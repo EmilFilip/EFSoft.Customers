@@ -41,7 +41,7 @@ public class CustomerController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Get()
     {
-        return Ok();
+        return Ok("Is working fine");
     }
 
     [HttpPost]
