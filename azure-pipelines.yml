@@ -25,14 +25,17 @@ steps:
 
 - task: NuGetToolInstaller@1
   displayName: 'Install NuGet Tool'
+  inputs:
+    versionSpec: '6.0.x'
+    checkLatest: true
 
 - task: NuGetCommand@2
   displayName: 'Restore NuGet Packages'
   inputs:
-    command: restore
-    projects: '**/*.csproj'
-    feedsToUse: 'config'
-    nugetConfigPath: 'NuGet.config'
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'select'
+    vstsFeed: 'b461ee19-0e11-4e29-a84b-881602ea8e3e'
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'Build $(buildConfiguration)'
