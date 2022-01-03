@@ -15,7 +15,14 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-
+- checkout: self
+- task: DotNetCoreCLI@2
+  displayName: New Manifest for tool
+  inputs:
+    command: custom
+    custom: 'new '
+    arguments: tool-manifest
+    
 - task: UseDotNet@2
   displayName: 'Use .NET 6 SDK'
   inputs:
