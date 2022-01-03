@@ -29,7 +29,10 @@ steps:
 - task: NuGetCommand@2
   displayName: 'Restore NuGet Packages'
   inputs:
-    restoreSolution: '$(solution)'
+    command: restore
+    projects: '**/*.csproj'
+    feedsToUse: 'config'
+    nugetConfigPath: 'NuGet.config'
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'Build $(buildConfiguration)'
