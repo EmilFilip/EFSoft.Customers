@@ -29,6 +29,13 @@ steps:
     versionSpec: '6.0.x'
     checkLatest: true
 
+- task: DotNetCoreCLI@2
+  displayName: Install EF Tool
+  inputs:
+    command: custom
+    custom: 'tool '
+    arguments: install dotnet-ef
+
 - task: NuGetCommand@2
   displayName: 'Restore NuGet Packages'
   inputs:
@@ -50,6 +57,13 @@ steps:
     testRunTitle: 'Unit-Test-Run-$(Build.BuildId)'
 
 - task: DotNetCoreCLI@2
+  displayName: Create SQL Scripts
+  inputs:
+    command: custom
+    custom: 'ef '
+    arguments: migrations script --output $(Build.SourcesDirectory)/SQL/tododbscript.sql --idempotent --project $(Build.SourcesDirectory)/src/EFSoft.Customers.Infrastructure.csproj --context CustomersDbContext
+
+- task: DotNetCoreCLI@2
   displayName: 'Publish'
   inputs:
     command: publish
@@ -61,4 +75,10 @@ steps:
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: 'BuildOutput'
-    publishLocation: 'pipeline' 
+    publishLocation: 'pipeline'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: SQLScripts'
+  inputs:
+    PathtoPublish: $(Build.SourcesDirectory)/SQL/tododbscript.sql
+    ArtifactName: SQLScripts
