@@ -15,13 +15,13 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- checkout: self
-- task: DotNetCoreCLI@2
-  displayName: New Manifest for tool
-  inputs:
-    command: custom
-    custom: 'new '
-    arguments: tool-manifest
+#- checkout: self
+#- task: DotNetCoreCLI@2
+# displayName: New Manifest for tool
+# inputs:
+#   command: custom
+#   custom: 'new '
+#   arguments: tool-manifest
     
 - task: UseDotNet@2
   displayName: 'Use .NET 6 SDK'
@@ -36,12 +36,12 @@ steps:
     versionSpec: '6.0.x'
     checkLatest: true
 
-- task: DotNetCoreCLI@2
-  displayName: Install EF Tool
-  inputs:
-    command: custom
-    custom: 'tool '
-    arguments: install dotnet-ef
+#- task: DotNetCoreCLI@2
+#  displayName: Install EF Tool
+#  inputs:
+#    command: custom
+#    custom: 'tool '
+#    arguments: install dotnet-ef
 
 - task: NuGetCommand@2
   displayName: 'Restore NuGet Packages'
@@ -63,12 +63,12 @@ steps:
     projects: '**/*.UnitTests.csproj'
     testRunTitle: 'Unit-Test-Run-$(Build.BuildId)'
 
-- task: DotNetCoreCLI@2
-  displayName: Create SQL Scripts
-  inputs:
-    command: custom
-    custom: 'ef '
-    arguments: migrations script --output $(Build.SourcesDirectory)/SQL/tododbscript.sql --idempotent --project $(Build.SourcesDirectory)/src/EFSoft.Customers.Infrastructure.csproj --context CustomersDbContext
+#- task: DotNetCoreCLI@2
+#  displayName: Create SQL Scripts
+#  inputs:
+#    command: custom
+#    custom: 'ef '
+#    arguments: migrations script --output $(Build.SourcesDirectory)/SQL/tododbscript.sql --idempotent --project $(Build.SourcesDirectory)/src/EFSoft.Customers.Infrastructure.csproj --context CustomersDbContext
 
 - task: DotNetCoreCLI@2
   displayName: 'Publish'
@@ -84,8 +84,8 @@ steps:
     artifact: 'BuildOutput'
     publishLocation: 'pipeline'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: SQLScripts'
-  inputs:
-    PathtoPublish: $(Build.SourcesDirectory)/SQL/tododbscript.sql
-    ArtifactName: SQLScripts
+#- task: PublishBuildArtifacts@1
+#  displayName: 'Publish Artifact: SQLScripts'
+#  inputs:
+#    PathtoPublish: $(Build.SourcesDirectory)/SQL/tododbscript.sql
+#    ArtifactName: SQLScripts
