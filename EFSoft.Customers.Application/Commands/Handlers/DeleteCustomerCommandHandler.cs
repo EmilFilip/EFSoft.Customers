@@ -2,9 +2,9 @@
 
 public class DeleteCustomerCommandHandler : ICommandHandler<DeleteCustomerCommandParameters>
 {
-    private readonly ICustomerRepository _customerRepository;
+    private readonly ICustomersRepository _customerRepository;
 
-    public DeleteCustomerCommandHandler(ICustomerRepository customerRepository)
+    public DeleteCustomerCommandHandler(ICustomersRepository customerRepository)
     {
         _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
     }

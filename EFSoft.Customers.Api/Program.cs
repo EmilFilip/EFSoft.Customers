@@ -6,23 +6,23 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<CustomerDbContext>(options =>
+builder.Services.AddDbContext<CustomersDbContext>(options =>
     {
-        options.UseSqlServer(builder.Configuration.GetConnectionString("CustomerConnectionString"));
+        options.UseSqlServer(builder.Configuration.GetConnectionString("CustomersConnectionString"));
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
     {
-        c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Customer Microservice", Version = "v1" });
+        c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Customers Microservice", Version = "v1" });
     });
 builder.Services.RegisterLocalServices(builder.Configuration);
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
+if (app.Environment.IsDevelopment())
+{
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI(c =>
@@ -30,7 +30,7 @@ var app = builder.Build();
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Customer Microservice V1");
     });
 
-//}
+}
 
 app.UseHttpsRedirection();
 

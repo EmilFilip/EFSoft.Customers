@@ -3,9 +3,9 @@
 public class GetCustomersQueryHandler :
         IQueryHandler<GetCustomersQueryParameters, GetCustomersQueryResult>
 {
-    private readonly ICustomerRepository _customerRepository;
+    private readonly ICustomersRepository _customerRepository;
 
-    public GetCustomersQueryHandler(ICustomerRepository customerRepository)
+    public GetCustomersQueryHandler(ICustomersRepository customerRepository)
     {
         _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
     }

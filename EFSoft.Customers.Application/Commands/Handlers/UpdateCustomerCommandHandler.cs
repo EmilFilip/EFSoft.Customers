@@ -2,9 +2,9 @@
 
 public class UpdateCustomerCommandHandler : ICommandHandler<UpdateCustomerCommandParameters>
 {
-    private readonly ICustomerRepository _customerRepository;
+    private readonly ICustomersRepository _customerRepository;
 
-    public UpdateCustomerCommandHandler(ICustomerRepository customerRepository)
+    public UpdateCustomerCommandHandler(ICustomersRepository customerRepository)
     {
         _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
     }

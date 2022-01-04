@@ -1,12 +1,12 @@
 ﻿namespace EFSoft.Customers.Infrastructure.Repositories
 {
-    public class CustomerRepository : ICustomerRepository
+    public class CustomersRepository : ICustomersRepository
     {
-        private readonly CustomerDbContext _customerDbContext;
+        private readonly CustomersDbContext _customersDbContext;
 
-        public CustomerRepository(CustomerDbContext customerDbContext)
+        public CustomersRepository(CustomersDbContext customerDbContext)
         {
-            _customerDbContext = customerDbContext;
+            _customersDbContext = customerDbContext;
         }
 
         public async Task CreateCustomerAsync(
@@ -16,9 +16,9 @@
             var entity = MapToEntity(customer);
             entity.UpdatedAt = DateTime.Now;
 
-            _customerDbContext.Customers.Add(entity);
+            _customersDbContext.Customers.Add(entity);
 
-            await _customerDbContext
+            await _customersDbContext
                 .SaveChangesAsync(cancellationToken);
         }
 
@@ -26,17 +26,17 @@
             Guid customerId,
             CancellationToken cancellationToken = default)
         {
-            var entity = await _customerDbContext.Customers.FindAsync(
-            keyValues: new object[] { customerId },
-            cancellationToken: cancellationToken);
+            var entity = await _customersDbContext.Customers.FindAsync(
+                keyValues: new object[] { customerId },
+                cancellationToken: cancellationToken);
 
             if (entity != null)
             {
                 entity.Deleted = true;
                 entity.DeletedAt = DateTime.Now;
 
-                _customerDbContext.Update(entity);
-                await _customerDbContext.SaveChangesAsync(cancellationToken);
+                _customersDbContext.Update(entity);
+                await _customersDbContext.SaveChangesAsync(cancellationToken);
             }
         }
 
@@ -44,9 +44,9 @@
             Guid customerId,
             CancellationToken cancellationToken = default)
         {
-            var entity = await _customerDbContext
-                .Customers
-                .FirstOrDefaultAsync(j => j.CustomerId == customerId && j.Deleted == false);
+            var entity = await _customersDbContext.Customers.FirstOrDefaultAsync(
+                        c => c.CustomerId == customerId && c.Deleted == false,
+                        cancellationToken: cancellationToken);
 
             if (entity == null)
             {
@@ -56,7 +56,7 @@
             return MapToDomain(entity);
         }
 
-        public Task<IEnumerable<CustomerModel>> GetCustomersAsync(
+        public async Task<IEnumerable<CustomerModel>> GetCustomersAsync(
             IEnumerable<Guid> customerIds,
             CancellationToken cancellationToken = default)
         {
@@ -67,7 +67,7 @@
             CustomerModel customer,
             CancellationToken cancellationToken = default)
         {
-            var entity = await _customerDbContext.Customers.FindAsync(
+            var entity = await _customersDbContext.Customers.FindAsync(
                         keyValues: new object[] { customer.CustomerId },
                         cancellationToken: cancellationToken);
 
@@ -77,8 +77,8 @@
                 entity.FullName = customer.FullName;
                 entity.DateOfBirth = customer.DateOfBirth;
 
-                _customerDbContext.Update(entity);
-                await _customerDbContext.SaveChangesAsync(cancellationToken);
+                _customersDbContext.Update(entity);
+                await _customersDbContext.SaveChangesAsync(cancellationToken);
             }
         }
 
@@ -101,6 +101,5 @@
                 DateOfBirth = domainCustomer.DateOfBirth
             };
         }
-
     }
 }

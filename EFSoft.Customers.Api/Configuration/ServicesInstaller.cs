@@ -10,11 +10,11 @@ public static class ServicesInstaller
         return services
              .AddCqrs(configurator =>
                     configurator.AddHandlers(typeof(GetCustomerQueryParameters).Assembly))
-             .AddDbContext<CustomerDbContext>(
+             .AddDbContext<CustomersDbContext>(
                 options =>
                 {
-                    options.UseSqlServer(configuration.GetConnectionString("CustomerDbConnection"));
+                    options.UseSqlServer(configuration.GetConnectionString("CustomersConnectionString"));
                 })
-             .AddScoped<ICustomerRepository, CustomerRepository>();
+             .AddScoped<ICustomersRepository, CustomersRepository>();
     }
 }

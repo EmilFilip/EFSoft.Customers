@@ -2,9 +2,9 @@
 
 public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerCommandParameters>
 {
-    private readonly ICustomerRepository _customerRepository;
+    private readonly ICustomersRepository _customerRepository;
 
-    public CreateCustomerCommandHandler(ICustomerRepository customerRepository)
+    public CreateCustomerCommandHandler(ICustomersRepository customerRepository)
     {
         _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
     }

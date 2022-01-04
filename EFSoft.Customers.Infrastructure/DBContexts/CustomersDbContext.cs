@@ -1,8 +1,8 @@
 ﻿namespace EFSoft.Customers.Infrastructure.DBContexts;
 
-    public class CustomerDbContext : DbContext
+    public class CustomersDbContext : DbContext
     {
-        public CustomerDbContext(DbContextOptions options) : base(options)
+        public CustomersDbContext(DbContextOptions options) : base(options)
         {
         }
 

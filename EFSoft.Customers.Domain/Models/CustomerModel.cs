@@ -30,7 +30,7 @@ public class CustomerModel
         DateOfBirth = dateOfBirth;
     }
 
-    public Guid CustomerId { get; set; }
+    public Guid CustomerId { get; }
 
     public string FullName { get; set; }
 
