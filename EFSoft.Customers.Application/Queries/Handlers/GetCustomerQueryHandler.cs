@@ -15,8 +15,8 @@ public class GetCustomerQueryHandler :
             CancellationToken cancellationToken = default)
     {
         var customer = await _customerRepository.GetCustomerAsync(
-            parameters.CustomerId,
-            cancellationToken);
+            customerId: parameters.CustomerId,
+            cancellationToken: cancellationToken);
 
 
         if (customer is null)

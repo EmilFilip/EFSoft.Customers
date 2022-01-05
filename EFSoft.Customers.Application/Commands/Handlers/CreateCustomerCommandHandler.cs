@@ -12,7 +12,9 @@ public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerComman
     public async Task HandleAsync(
         CreateCustomerCommandParameters command)
     {
-        var customer = CustomerModel.CreateNew(command.FullName, command.DateOfBirth);
+        var customer = CustomerModel.CreateNew(
+            fullName: command.FullName,
+            dateOfBirth: command.DateOfBirth);
 
         await _customerRepository.CreateCustomerAsync(customer);
     }

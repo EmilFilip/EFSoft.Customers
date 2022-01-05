@@ -25,8 +25,7 @@ public class CustomerController : ControllerBase
     public async Task<IActionResult> Get(Guid customerId)
     {
         var results = await _queryExecutor.ExecuteAsync<GetCustomerQueryParameters, GetCustomerQueryResult>(
-         new GetCustomerQueryParameters(
-             customerId: customerId));
+         new GetCustomerQueryParameters(customerId));
 
         if (results == null)
         {
