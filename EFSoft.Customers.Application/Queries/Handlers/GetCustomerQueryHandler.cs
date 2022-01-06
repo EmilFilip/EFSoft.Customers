@@ -30,4 +30,3 @@ public class GetCustomerQueryHandler :
             dateOfBirth: customer.DateOfBirth);
     }
 }
-

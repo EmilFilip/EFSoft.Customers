@@ -14,7 +14,6 @@
             CancellationToken cancellationToken = default)
         {
             var entity = MapToEntity(customer);
-            entity.UpdatedAt = DateTime.Now;
 
             _customersDbContext.Customers.Add(entity);
 
@@ -33,7 +32,7 @@
             if (entity != null)
             {
                 entity.Deleted = true;
-                entity.DeletedAt = DateTime.Now;
+                entity.DeletedAt = DateTime.UtcNow;
 
                 _customersDbContext.Update(entity);
                 await _customersDbContext.SaveChangesAsync(cancellationToken);
@@ -45,8 +44,8 @@
             CancellationToken cancellationToken = default)
         {
             var entity = await _customersDbContext.Customers.FirstOrDefaultAsync(
-                        c => c.CustomerId == customerId && c.Deleted == false,
-                        cancellationToken: cancellationToken);
+                c => c.CustomerId == customerId && c.Deleted == false,
+                cancellationToken: cancellationToken);
 
             if (entity == null)
             {
@@ -68,12 +67,12 @@
             CancellationToken cancellationToken = default)
         {
             var entity = await _customersDbContext.Customers.FindAsync(
-                        keyValues: new object[] { customer.CustomerId },
-                        cancellationToken: cancellationToken);
+                keyValues: new object[] { customer.CustomerId },
+                cancellationToken: cancellationToken);
 
             if (entity != null)
             {
-                entity.UpdatedAt = DateTime.Now;
+                entity.UpdatedAt = DateTime.UtcNow;
                 entity.FullName = customer.FullName;
                 entity.DateOfBirth = customer.DateOfBirth;
 
@@ -98,7 +97,8 @@
             {
                 CustomerId = domainCustomer.CustomerId,
                 FullName = domainCustomer.FullName,
-                DateOfBirth = domainCustomer.DateOfBirth
+                DateOfBirth = domainCustomer.DateOfBirth,
+                UpdatedAt = DateTime.UtcNow
             };
         }
     }
