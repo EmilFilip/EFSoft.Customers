@@ -12,6 +12,9 @@
         [Required]
         public DateTimeOffset DateOfBirth { get; set; }
 
+        [DefaultValue(false)]
+        public bool HasOpenOrder { get; set; }
+
         public bool Deleted { get; set; }
 
         public DateTime? UpdatedAt { get; set; }

@@ -87,7 +87,8 @@
             return new CustomerModel(
                 customerId: entityCustomer.CustomerId,
                 fullName: entityCustomer.FullName,
-                dateOfBirth: entityCustomer.DateOfBirth);
+                dateOfBirth: entityCustomer.DateOfBirth,
+                hasOpenOrder: entityCustomer.HasOpenOrder);
         }
 
         private static Customer MapToEntity(
@@ -98,6 +99,7 @@
                 CustomerId = domainCustomer.CustomerId,
                 FullName = domainCustomer.FullName,
                 DateOfBirth = domainCustomer.DateOfBirth,
+                HasOpenOrder = domainCustomer.HasOpenOrder,
                 UpdatedAt = DateTime.UtcNow
             };
         }

@@ -1,4 +1,5 @@
-﻿global using System.ComponentModel.DataAnnotations;
+﻿global using System.ComponentModel;
+global using System.ComponentModel.DataAnnotations;
 
 global using EFSoft.Customers.Application.RepositoryContracts;
 global using EFSoft.Customers.Domain.Models;

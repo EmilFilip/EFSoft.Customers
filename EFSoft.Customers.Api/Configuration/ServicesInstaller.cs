@@ -13,7 +13,10 @@ public static class ServicesInstaller
              .AddDbContext<CustomersDbContext>(
                 options =>
                 {
-                    options.UseSqlServer(configuration.GetConnectionString("CustomersConnectionString"));
+                    options.UseSqlServer(configuration.GetConnectionString("CustomersConnectionString"), sqlServeroptions =>
+                    {
+                        sqlServeroptions.EnableRetryOnFailure();
+                    });
                 })
              .AddScoped<ICustomersRepository, CustomersRepository>();
     }

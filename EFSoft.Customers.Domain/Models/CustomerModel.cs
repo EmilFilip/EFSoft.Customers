@@ -5,6 +5,17 @@ public class CustomerModel
     public CustomerModel(
         Guid customerId,
         string fullName,
+        DateTimeOffset dateOfBirth,
+        bool hasOpenOrder)
+    {
+        CustomerId = customerId;
+        FullName = fullName;
+        DateOfBirth = dateOfBirth;
+        HasOpenOrder = hasOpenOrder;
+    }
+    public CustomerModel(
+        Guid customerId,
+        string fullName,
         DateTimeOffset dateOfBirth)
     {
         CustomerId = customerId;
@@ -19,7 +30,8 @@ public class CustomerModel
         return new CustomerModel(
             customerId: Guid.NewGuid(),
             fullName: fullName,
-            dateOfBirth: dateOfBirth);
+            dateOfBirth: dateOfBirth,
+            hasOpenOrder: false);
     }
 
     public void Update(
@@ -30,9 +42,17 @@ public class CustomerModel
         DateOfBirth = dateOfBirth;
     }
 
+    public void UpdateOpenOrder(
+        bool hasOpenOrder)
+    {
+        HasOpenOrder = hasOpenOrder;
+    }
+
     public Guid CustomerId { get; }
 
     public string FullName { get; set; }
 
     public DateTimeOffset DateOfBirth { get; set; }
+
+    public bool HasOpenOrder { get; set; }
 }
