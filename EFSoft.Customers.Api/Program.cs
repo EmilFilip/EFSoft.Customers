@@ -5,15 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 if (!builder.Environment.IsDevelopment())
 {
-    var appConfigurationConnectionString = builder.Configuration.GetValue<string>("AppConfigurationUrl");
+    var appConfigurationConnectionString = builder.Configuration.GetValue<string>("AppConfigurationConnectionString");
 
-    var azureAppConfigurationUri = new Uri(appConfigurationConnectionString);
     builder.Configuration.AddAzureAppConfiguration(config =>
     {
-        config.Connect(azureAppConfigurationUri, new DefaultAzureCredential());
+        config.Connect(appConfigurationConnectionString);
     });
 }
-//var appConfigurationConnectionString = "Endpoint=https://efsoft-appconfiguration.azconfig.io;Id=noHe-l9-s0:M3rnORTPG+I2K+r8P1R8;Secret=mbEznka9bwqQ5kUvaffE9MvcmXX8kl1+yssvKC9aByg=";
 
 // Add services to the container.
 builder.Services.AddControllers();
