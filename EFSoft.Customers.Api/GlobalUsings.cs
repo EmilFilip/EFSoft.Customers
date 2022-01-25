@@ -1,5 +1,8 @@
 ﻿global using System.Diagnostics.CodeAnalysis;
 
+global using Azure.Identity;
+
+global using EFSoft.Customers.Api.Configuration;
 global using EFSoft.Customers.Application.Commands.Parameters;
 global using EFSoft.Customers.Application.Queries.Parameters;
 global using EFSoft.Customers.Application.Queries.Results;
@@ -12,3 +15,4 @@ global using EFSoft.Shared.Cqrs.Query;
 
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Configuration;

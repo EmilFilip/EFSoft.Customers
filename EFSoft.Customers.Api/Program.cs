@@ -1,11 +1,24 @@
 
-using EFSoft.Customers.Api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+if (!builder.Environment.IsDevelopment())
+{
+    var appConfigurationConnectionString = builder.Configuration.GetValue<string>("AppConfigurationUrl");
+
+    var azureAppConfigurationUri = new Uri(appConfigurationConnectionString);
+    builder.Configuration.AddAzureAppConfiguration(config =>
+    {
+        config.Connect(azureAppConfigurationUri, new DefaultAzureCredential());
+    });
+}
+//var appConfigurationConnectionString = "Endpoint=https://efsoft-appconfiguration.azconfig.io;Id=noHe-l9-s0:M3rnORTPG+I2K+r8P1R8;Secret=mbEznka9bwqQ5kUvaffE9MvcmXX8kl1+yssvKC9aByg=";
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Configuration.AddEnvironmentVariables();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerGen(c =>
@@ -25,8 +38,9 @@ if (app.Environment.IsDevelopment())
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Customer Microservice V1");
     });
-
 }
+
+app.UseAzureAppConfiguration();
 
 app.UseHttpsRedirection();
 
