@@ -38,7 +38,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseAzureAppConfiguration();
+//app.UseAzureAppConfiguration();
 
 app.UseHttpsRedirection();
 
