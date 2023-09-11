@@ -1,0 +1,51 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: svc-efsoft-services-customersapi
+  labels:
+    version: dev
+    product: efsoft-services-customersapi
+spec:
+  selector:
+    app: efsoft-services-customersapi
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  - port: 443
+    targetPort: 443
+    protocol: TCP
+    name: https
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-efsoft-services-customersapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: efsoft-services-customersapi
+  template:
+    metadata:
+      labels:
+        app: efsoft-services-customersapi
+    spec:
+      containers:
+      - name: efsoft-services-customersapi
+        image: efsoftcr.azurecr.io/efsoft_customers:v5
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
+        - name: ASPNETCORE_URLS
+          value: http://+:80
+        - name: ConnectionStrings__CustomersConnectionString
+          valueFrom: 
+            secretKeyRef:
+              name: customers-db
+              key: CustomersConnectionString
+        ports:
+        - containerPort: 80
+        - containerPort: 443

@@ -1,4 +1,6 @@
-﻿namespace EFSoft.Customers.Api.Configuration;
+﻿using EFSoft.Customers.Application.Queries.GetCustomer;
+
+namespace EFSoft.Customers.Api.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class ServicesInstaller
@@ -8,8 +10,10 @@ public static class ServicesInstaller
                     IConfiguration configuration)
     {
         return services
-             .AddCqrs(configurator =>
-                    configurator.AddHandlers(typeof(GetCustomerQueryParameters).Assembly))
+             .AddMediatR(configure =>
+             {
+                 configure.RegisterServicesFromAssembly(typeof(GetCustomerQuery).Assembly);
+             })
              .AddDbContext<CustomersDbContext>(
                 options =>
                 {

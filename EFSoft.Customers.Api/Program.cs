@@ -1,4 +1,4 @@
-
+using EFSoft.Customers.Api.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +14,8 @@ if (!builder.Environment.IsDevelopment())
 }
 
 // Add services to the container.
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 builder.Configuration.AddEnvironmentVariables();
 
@@ -27,6 +28,8 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.RegisterLocalServices(builder.Configuration);
 
 var app = builder.Build();
+
+app.MapGetCustomerEndpoints();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -44,6 +47,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+//app.MapControllers();
 
 app.Run();
