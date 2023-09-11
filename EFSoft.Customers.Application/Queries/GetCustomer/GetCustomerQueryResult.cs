@@ -1,6 +1,6 @@
-﻿namespace EFSoft.Customers.Application.Queries.Results;
+﻿namespace EFSoft.Customers.Application.Queries.GetCustomer;
 
-    public class GetCustomerQueryResult : IQueryResult
+public class GetCustomerQueryResult
 {
     public GetCustomerQueryResult(
         string fullName,

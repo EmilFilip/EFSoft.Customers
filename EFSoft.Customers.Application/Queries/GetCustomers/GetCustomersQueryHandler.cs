@@ -1,7 +1,6 @@
-﻿namespace EFSoft.Customers.Application.Queries.Handlers;
+﻿namespace EFSoft.Customers.Application.Queries.GetCustomers;
 
-public class GetCustomersQueryHandler :
-        IQueryHandler<GetCustomersQueryParameters, GetCustomersQueryResult>
+public class GetCustomersQueryHandler : IRequestHandler<GetCustomersQuery, GetCustomersQueryResult>
 {
     private readonly ICustomersRepository _customerRepository;
 
@@ -10,8 +9,8 @@ public class GetCustomersQueryHandler :
         _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
     }
 
-    public async Task<GetCustomersQueryResult> HandleAsync(
-            GetCustomersQueryParameters parameters,
+    public async Task<GetCustomersQueryResult> Handle(
+            GetCustomersQuery parameters,
             CancellationToken cancellationToken = default)
     {
         var customers = await _customerRepository.GetCustomersAsync(

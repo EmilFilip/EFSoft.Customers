@@ -1,6 +1,6 @@
-﻿namespace EFSoft.Customers.Application.Commands.Handlers;
+﻿namespace EFSoft.Customers.Application.Commands.UpdateCustomer;
 
-public class UpdateCustomerCommandHandler : ICommandHandler<UpdateCustomerCommandParameters>
+public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand>
 {
     private readonly ICustomersRepository _customerRepository;
 
@@ -9,7 +9,9 @@ public class UpdateCustomerCommandHandler : ICommandHandler<UpdateCustomerComman
         _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
     }
 
-    public async Task HandleAsync(UpdateCustomerCommandParameters command)
+    public async Task Handle(
+        UpdateCustomerCommand command,
+        CancellationToken cancellationToken)
     {
         var customerModel = new CustomerModel(
             customerId: command.CustomerId,

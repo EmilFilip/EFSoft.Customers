@@ -1,6 +1,6 @@
-﻿namespace EFSoft.Customers.Application.Commands.Handlers;
+﻿namespace EFSoft.Customers.Application.Commands.CreateCustomer;
 
-public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerCommandParameters>
+public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand>
 {
     private readonly ICustomersRepository _customerRepository;
 
@@ -9,8 +9,9 @@ public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerComman
         _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
     }
 
-    public async Task HandleAsync(
-        CreateCustomerCommandParameters command)
+    public async Task Handle(
+        CreateCustomerCommand command
+        , CancellationToken cancellationToken)
     {
         var customer = CustomerModel.CreateNew(
             fullName: command.FullName,

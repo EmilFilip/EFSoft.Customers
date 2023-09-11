@@ -1,6 +1,6 @@
-﻿namespace EFSoft.Customers.Application.Commands.Handlers;
+﻿namespace EFSoft.Customers.Application.Commands.DeleteCustomer;
 
-public class DeleteCustomerCommandHandler : ICommandHandler<DeleteCustomerCommandParameters>
+public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand>
 {
     private readonly ICustomersRepository _customerRepository;
 
@@ -9,7 +9,9 @@ public class DeleteCustomerCommandHandler : ICommandHandler<DeleteCustomerComman
         _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
     }
 
-    public async Task HandleAsync(DeleteCustomerCommandParameters command)
+    public async Task Handle(
+        DeleteCustomerCommand command,
+        CancellationToken cancellationToken)
     {
         await _customerRepository.DeleteCustomerAsync(command.CustomerId);
     }
