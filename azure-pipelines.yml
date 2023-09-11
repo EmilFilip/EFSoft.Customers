@@ -25,7 +25,7 @@ steps:
 - task: NuGetToolInstaller@1
   displayName: 'Install NuGet Tool'
   inputs:
-    versionSpec: '7.0.x'
+    versionSpec: '6.7.x'
     checkLatest: true
 
 - task: NuGetCommand@2
