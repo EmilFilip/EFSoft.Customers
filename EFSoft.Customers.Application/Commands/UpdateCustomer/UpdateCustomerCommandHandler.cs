@@ -1,6 +1,8 @@
-﻿namespace EFSoft.Customers.Application.Commands.UpdateCustomer;
+﻿using Infrastructure.CQRS.Commands;
 
-public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand>
+namespace EFSoft.Customers.Application.Commands.UpdateCustomer;
+
+public class UpdateCustomerCommandHandler : ICommandHandler<UpdateCustomerCommand>
 {
     private readonly ICustomersRepository _customerRepository;
 

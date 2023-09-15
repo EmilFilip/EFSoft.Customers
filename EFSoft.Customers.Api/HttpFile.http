@@ -1,0 +1,6 @@
+﻿@HttpFile_HostAddress = https://localhost:7244
+
+GET {{HttpFile_HostAddress}}/api/customers/"2A8C800A-3226-4CC8-B920-1A42F1E67F7B"
+Accept: application/json
+
+###

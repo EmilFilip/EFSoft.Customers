@@ -1,5 +1,7 @@
-﻿namespace EFSoft.Customers.Application.Queries.GetCustomers;
+﻿using Infrastructure.CQRS.Queries;
 
-public sealed record GetCustomersQuery(IEnumerable<Guid> CustomerIds) : IRequest<GetCustomersQueryResult>
+namespace EFSoft.Customers.Application.Queries.GetCustomers;
+
+public sealed record GetCustomersQuery(IEnumerable<Guid> CustomerIds) : IQuery<GetCustomersQueryResult>
 {
 }

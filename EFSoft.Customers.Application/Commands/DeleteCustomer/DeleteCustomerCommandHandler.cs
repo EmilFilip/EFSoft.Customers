@@ -1,6 +1,8 @@
-﻿namespace EFSoft.Customers.Application.Commands.DeleteCustomer;
+﻿using Infrastructure.CQRS.Commands;
 
-public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand>
+namespace EFSoft.Customers.Application.Commands.DeleteCustomer;
+
+public class DeleteCustomerCommandHandler : ICommandHandler<DeleteCustomerCommand>
 {
     private readonly ICustomersRepository _customerRepository;
 

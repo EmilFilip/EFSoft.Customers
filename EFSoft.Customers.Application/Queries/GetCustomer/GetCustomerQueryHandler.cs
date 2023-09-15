@@ -1,6 +1,8 @@
-﻿namespace EFSoft.Customers.Application.Queries.GetCustomer;
+﻿using Infrastructure.CQRS.Queries;
 
-public class GetCustomerQueryHandler : IRequestHandler<GetCustomerQuery, GetCustomerQueryResult>
+namespace EFSoft.Customers.Application.Queries.GetCustomer;
+
+public class GetCustomerQueryHandler : IQueryHandler<GetCustomerQuery, GetCustomerQueryResult>
 {
     private readonly ICustomersRepository _customerRepository;
 

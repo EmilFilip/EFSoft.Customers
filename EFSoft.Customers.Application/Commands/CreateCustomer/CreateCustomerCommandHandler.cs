@@ -1,6 +1,8 @@
-﻿namespace EFSoft.Customers.Application.Commands.CreateCustomer;
+﻿using Infrastructure.CQRS.Commands;
 
-public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand>
+namespace EFSoft.Customers.Application.Commands.CreateCustomer;
+
+public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerCommand>
 {
     private readonly ICustomersRepository _customerRepository;
 
