@@ -1,6 +1,4 @@
-﻿using Infrastructure.CQRS.Commands;
-
-namespace EFSoft.Customers.Application.Commands.DeleteCustomer;
+﻿namespace EFSoft.Customers.Application.Commands.DeleteCustomer;
 
 public class DeleteCustomerCommandHandler : ICommandHandler<DeleteCustomerCommand>
 {

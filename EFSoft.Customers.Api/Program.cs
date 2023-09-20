@@ -1,4 +1,6 @@
 using EFSoft.Customers.Api.Endpoints;
+using EFSoft.Customers.Application.Queries.GetCustomer;
+using EFSoft.Shared.Cqrs.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,14 +9,16 @@ if (!builder.Environment.IsDevelopment())
 {
     var appConfigurationConnectionString = builder.Configuration.GetValue<string>("AppConfigurationConnectionString");
 
-    builder.Configuration.AddAzureAppConfiguration(config =>
-    {
-        config.Connect(appConfigurationConnectionString);
-    });
+    builder.Configuration.AddAzureAppConfiguration(options =>
+        {
+            options.Connect(appConfigurationConnectionString)
+                    .ConfigureRefresh(refresh =>
+                    {
+                        refresh.Register("Settings:Sentinel", refreshAll: true).SetCacheExpiration(new TimeSpan(0, 1, 0));
+                    });
+        });
 }
-
 // Add services to the container.
-//builder.Services.AddControllers();
 builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 builder.Configuration.AddEnvironmentVariables();
@@ -26,6 +30,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 
 builder.Services.RegisterLocalServices(builder.Configuration);
+builder.Services.RegisterCqrs(typeof(GetCustomerQuery).Assembly);
 
 var app = builder.Build();
 
@@ -41,12 +46,13 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-//app.UseAzureAppConfiguration();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseAzureAppConfiguration();
+}
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
-//app.MapControllers();
 
 app.Run();

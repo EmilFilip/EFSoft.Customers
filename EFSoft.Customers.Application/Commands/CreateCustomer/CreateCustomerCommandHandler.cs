@@ -1,6 +1,4 @@
-﻿using Infrastructure.CQRS.Commands;
-
-namespace EFSoft.Customers.Application.Commands.CreateCustomer;
+﻿namespace EFSoft.Customers.Application.Commands.CreateCustomer;
 
 public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerCommand>
 {

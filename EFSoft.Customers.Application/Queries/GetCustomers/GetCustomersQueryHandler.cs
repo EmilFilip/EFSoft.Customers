@@ -1,6 +1,4 @@
-﻿using Infrastructure.CQRS.Queries;
-
-namespace EFSoft.Customers.Application.Queries.GetCustomers;
+﻿namespace EFSoft.Customers.Application.Queries.GetCustomers;
 
 public class GetCustomersQueryHandler : IQueryHandler<GetCustomersQuery, GetCustomersQueryResult>
 {
