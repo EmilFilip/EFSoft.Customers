@@ -1,9 +1,4 @@
-﻿using EFSoft.Customers.Application.Commands.CreateCustomer;
-using EFSoft.Customers.Application.Commands.DeleteCustomer;
-using EFSoft.Customers.Application.Commands.UpdateCustomer;
-using EFSoft.Customers.Application.Queries.GetCustomer;
-
-namespace EFSoft.Customers.Api.Controllers;
+﻿namespace EFSoft.Customers.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

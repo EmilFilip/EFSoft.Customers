@@ -10,8 +10,8 @@ public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerComman
     }
 
     public async Task Handle(
-        CreateCustomerCommand command
-        , CancellationToken cancellationToken)
+        CreateCustomerCommand command,
+        CancellationToken cancellationToken)
     {
         var customer = CustomerModel.CreateNew(
             fullName: command.FullName,

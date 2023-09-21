@@ -4,7 +4,7 @@ public class UpdateCustomerCommandValidator : AbstractValidator<UpdateCustomerCo
 {
     public UpdateCustomerCommandValidator()
     {
-        RuleFor(e => e.FullName)
+        RuleFor(e => e.CustomerId)
             .NotNull().WithMessage("CustomerId cannot be null")
             .NotEmpty().WithMessage("CustomerId cannot be empty");
     }

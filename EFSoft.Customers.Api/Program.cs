@@ -1,22 +1,17 @@
-using EFSoft.Customers.Api.Endpoints;
-using EFSoft.Customers.Application.Queries.GetCustomer;
-using EFSoft.Shared.Cqrs.Configuration;
-
 var builder = WebApplication.CreateBuilder(args);
-
 
 if (!builder.Environment.IsDevelopment())
 {
     var appConfigurationConnectionString = builder.Configuration.GetValue<string>("AppConfigurationConnectionString");
 
     builder.Configuration.AddAzureAppConfiguration(options =>
-        {
-            options.Connect(appConfigurationConnectionString)
-                    .ConfigureRefresh(refresh =>
-                    {
-                        refresh.Register("Settings:Sentinel", refreshAll: true).SetCacheExpiration(new TimeSpan(0, 1, 0));
-                    });
-        });
+    {
+        options.Connect(appConfigurationConnectionString)
+                .ConfigureRefresh(refresh =>
+                {
+                    refresh.Register("Settings:Sentinel", refreshAll: true).SetCacheExpiration(new TimeSpan(0, 1, 0));
+                });
+    });
 }
 // Add services to the container.
 builder.Services.AddAuthorization();
@@ -34,7 +29,7 @@ builder.Services.RegisterCqrs(typeof(GetCustomerQuery).Assembly);
 
 var app = builder.Build();
 
-app.MapGetCustomerEndpoints();
+app.MapCustomerEndpoints();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -45,7 +40,6 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Customer Microservice V1");
     });
 }
-
 if (!app.Environment.IsDevelopment())
 {
     app.UseAzureAppConfiguration();

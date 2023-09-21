@@ -1,15 +1,8 @@
-﻿using EFSoft.Customers.Application.Commands.CreateCustomer;
-using EFSoft.Customers.Application.Commands.DeleteCustomer;
-using EFSoft.Customers.Application.Commands.UpdateCustomer;
-using EFSoft.Customers.Application.Queries.GetCustomer;
-
-using Microsoft.AspNetCore.Http.HttpResults;
-
-namespace EFSoft.Customers.Api.Endpoints;
+﻿namespace EFSoft.Customers.Api.Endpoints;
 
 public static class CustomerEndpoints
 {
-    public static void MapGetCustomerEndpoints(this IEndpointRouteBuilder endpoint)
+    public static void MapCustomerEndpoints(this IEndpointRouteBuilder endpoint)
     {
         var group = endpoint.MapGroup("api/customers");
 
