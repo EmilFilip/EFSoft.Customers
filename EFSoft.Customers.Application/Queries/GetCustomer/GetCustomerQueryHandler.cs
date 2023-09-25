@@ -6,7 +6,7 @@ public class GetCustomerQueryHandler : IQueryHandler<GetCustomerQuery, GetCustom
 
     public GetCustomerQueryHandler(ICustomersRepository customerRepository)
     {
-        _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
+        _customerRepository = customerRepository;
     }
 
     public async Task<GetCustomerQueryResult> Handle(

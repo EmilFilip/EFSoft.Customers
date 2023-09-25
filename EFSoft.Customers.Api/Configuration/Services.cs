@@ -8,6 +8,7 @@ public static class Services
                     IConfiguration configuration)
     {
         return services
+             .RegisterCqrs(typeof(GetCustomerQuery).Assembly)
              .AddDbContext<CustomersDbContext>(
                 options =>
                 {

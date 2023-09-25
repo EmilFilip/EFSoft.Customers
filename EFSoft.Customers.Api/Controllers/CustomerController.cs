@@ -8,7 +8,7 @@ public class CustomerController : ControllerBase
 
     public CustomerController(IMediator mediator)
     {
-        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        _mediator = mediator;
     }
 
     [HttpGet]

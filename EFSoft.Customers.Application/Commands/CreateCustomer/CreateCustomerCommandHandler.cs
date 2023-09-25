@@ -6,7 +6,7 @@ public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerComman
 
     public CreateCustomerCommandHandler(ICustomersRepository customerRepository)
     {
-        _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
+        _customerRepository = customerRepository;
     }
 
     public async Task Handle(
@@ -17,6 +17,6 @@ public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerComman
             fullName: command.FullName,
             dateOfBirth: command.DateOfBirth);
 
-        await _customerRepository.CreateCustomerAsync(customer);
+        await _customerRepository.CreateCustomerAsync(customer, cancellationToken);
     }
 }

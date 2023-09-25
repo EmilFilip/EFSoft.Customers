@@ -6,7 +6,7 @@ public class UpdateCustomerCommandHandler : ICommandHandler<UpdateCustomerComman
 
     public UpdateCustomerCommandHandler(ICustomersRepository customerRepository)
     {
-        _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
+        _customerRepository = customerRepository;
     }
 
     public async Task Handle(
@@ -18,6 +18,6 @@ public class UpdateCustomerCommandHandler : ICommandHandler<UpdateCustomerComman
             fullName: command.FullName,
             dateOfBirth: command.DateOfBirth);
 
-        await _customerRepository.UpdateCustomerAsync(customerModel);
+        await _customerRepository.UpdateCustomerAsync(customerModel, cancellationToken);
     }
 }

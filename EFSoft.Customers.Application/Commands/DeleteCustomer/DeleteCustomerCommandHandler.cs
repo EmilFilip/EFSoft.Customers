@@ -6,13 +6,13 @@ public class DeleteCustomerCommandHandler : ICommandHandler<DeleteCustomerComman
 
     public DeleteCustomerCommandHandler(ICustomersRepository customerRepository)
     {
-        _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
+        _customerRepository = customerRepository;
     }
 
     public async Task Handle(
         DeleteCustomerCommand command,
         CancellationToken cancellationToken)
     {
-        await _customerRepository.DeleteCustomerAsync(command.CustomerId);
+        await _customerRepository.DeleteCustomerAsync(command.CustomerId, cancellationToken);
     }
 }

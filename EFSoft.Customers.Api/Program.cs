@@ -25,7 +25,6 @@ builder.Services.AddSwaggerGen(c =>
     });
 
 builder.Services.RegisterLocalServices(builder.Configuration);
-builder.Services.RegisterCqrs(typeof(GetCustomerQuery).Assembly);
 
 var app = builder.Build();
 
@@ -37,12 +36,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Customer Microservice V1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Customers Microservice V1");
     });
-}
-if (!app.Environment.IsDevelopment())
-{
-    app.UseAzureAppConfiguration();
 }
 
 app.UseHttpsRedirection();
