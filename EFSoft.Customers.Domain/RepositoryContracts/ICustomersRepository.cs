@@ -1,4 +1,6 @@
-﻿namespace EFSoft.Customers.Application.RepositoryContracts;
+﻿using EFSoft.Customers.Domain.Models;
+
+namespace EFSoft.Customers.Domain.RepositoryContracts;
 
 public interface ICustomersRepository
 {
