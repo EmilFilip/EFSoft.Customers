@@ -7,7 +7,7 @@ public static class CustomerEndpoints
         var group = endpoint.MapGroup("api/customer");
 
         group.MapGet("{customerId:guid}", Get);
-        group.MapGet("{customerIds}", GetCustomers);
+        group.MapGet("", GetCustomers);
         group.MapPost("", Post);
         group.MapPut("", Put);
         group.MapDelete("{customerId:guid}", Delete);
@@ -30,7 +30,7 @@ public static class CustomerEndpoints
         return TypedResults.Ok(results);
     }
 
-    public static async Task<Results<Ok<IEnumerable<CustomerModel>>, NotFound>> GetCustomers(
+    public static async Task<Results<Ok<GetCustomersQueryResult>, NotFound>> GetCustomers(
         Guid[] customerIds,
         IMediator mediator,
         CancellationToken cancellationToken)
@@ -39,12 +39,12 @@ public static class CustomerEndpoints
             new GetCustomersQuery(customerIds),
             cancellationToken);
 
-        if (results == null)
+        if (!results.Customers.Any())
         {
             return TypedResults.NotFound();
         }
 
-        return TypedResults.Ok(results.Customers);
+        return TypedResults.Ok(results);
     }
 
     public static async Task<IResult> Post(

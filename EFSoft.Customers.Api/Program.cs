@@ -21,7 +21,7 @@ builder.Configuration.AddEnvironmentVariables();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerGen(c =>
     {
-        c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Customers Microservice", Version = "v1" });
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Customers Microservice", Version = "v1" });
     });
 
 builder.Services.RegisterLocalServices(builder.Configuration);
@@ -29,7 +29,7 @@ builder.Services.RegisterLocalServices(builder.Configuration);
 var app = builder.Build();
 
 app.MapCustomerEndpoints();
-
+app.SeedCustomerDb();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -39,9 +39,7 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Customers Microservice V1");
     });
 }
-
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
+app.UseHttpsRedirection();
 
 app.Run();

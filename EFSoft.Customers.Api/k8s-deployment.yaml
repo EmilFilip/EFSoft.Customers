@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: efsoft-services-customersapi
-        image: efsoftcr.azurecr.io/efsoft_customers:v1
+        image: efsoft.azurecr.io/efsoft_customers:v1
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Production
