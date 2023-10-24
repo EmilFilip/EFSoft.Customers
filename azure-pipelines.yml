@@ -28,7 +28,7 @@ stages:
       inputs:
         containerRegistry: 'efsoft'
         command: 'build'
-        repository: 'efsoft_customers'
+        repository: 'efsoft-customers'
         dockerfile: '**/Dockerfile'
         arguments: '--build-arg NUGET_PASSWORD=$(PAT)'
         tags: latest
@@ -36,7 +36,7 @@ stages:
       displayName: 'Push Docker image'
       inputs:
         containerRegistry: 'efsoft'
-        repository: 'efsoft_customers'
+        repository: 'efsoft-customers'
         command: 'push'
         tags: latest
     - task: CopyFiles@2
