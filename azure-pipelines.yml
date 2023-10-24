@@ -31,11 +31,21 @@ stages:
         repository: 'efsoft_customers'
         dockerfile: '**/Dockerfile'
         arguments: '--build-arg NUGET_PASSWORD=$(PAT)'
-        tags: $(Build.BuildId)
+        tags: latest
     - task: Docker@2
       displayName: 'Push Docker image'
       inputs:
         containerRegistry: 'efsoft'
         repository: 'efsoft_customers'
         command: 'push'
-        tags: $(Build.BuildId)
+        tags: latest
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(agent.builddirectory)'
+        Contents: $(agent.builddirectory)/**/k8s-deployment.yaml
+        TargetFolder: '$(build.artifactstagingdirectory)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
