@@ -1,7 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
-if (!builder.Environment.IsDevelopment())
-{
+//if (!builder.Environment.IsDevelopment())
+//{
     var appConfigurationConnectionString = builder.Configuration.GetValue<string>("AppConfigurationConnectionString");
 
     builder.Configuration.AddAzureAppConfiguration(options =>
@@ -9,10 +9,12 @@ if (!builder.Environment.IsDevelopment())
         options.Connect(appConfigurationConnectionString)
                 .ConfigureRefresh(refresh =>
                 {
-                    refresh.Register("Settings:Sentinel", refreshAll: true).SetCacheExpiration(new TimeSpan(0, 1, 0));
+                    refresh.Register("Settings:Sentinel", refreshAll: true)
+                        .SetCacheExpiration(new TimeSpan(0, 1, 0));
                 });
     });
-}
+//}
+
 // Add services to the container.
 builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
