@@ -1,20 +1,13 @@
 ﻿namespace EFSoft.Customers.Infrastructure.Repositories;
 
-public class GetCustomersRepository : IGetCustomersRepository
+public class GetCustomersRepository(CustomersDbContext customerDbContext) : IGetCustomersRepository
 {
-    private readonly CustomersDbContext _customersDbContext;
-
-    public GetCustomersRepository(CustomersDbContext customerDbContext)
-    {
-        _customersDbContext = customerDbContext;
-    }
-
     public async Task<IEnumerable<CustomerModel>> GetCustomersAsync(
-        IEnumerable<Guid> customerIds, 
+        IEnumerable<Guid> customerIds,
         CancellationToken cancellationToken = default)
     {
 
-        var entities = await _customersDbContext.Customers
+        var entities = await customerDbContext.Customers
             .AsQueryable()
             .Where(c => customerIds.Contains(c.CustomerId) && c.Deleted == false)
             .AsNoTracking()

@@ -1,20 +1,13 @@
 ﻿namespace EFSoft.Customers.Infrastructure.Repositories;
 
-public class UpdateCustomerRepository : IUpdateCustomerRepository
+public class UpdateCustomerRepository(CustomersDbContext customersDbContext) : IUpdateCustomerRepository
 {
-    private readonly CustomersDbContext _customersDbContext;
-
-    public UpdateCustomerRepository(CustomersDbContext customerDbContext)
-    {
-        _customersDbContext = customerDbContext;
-    }
-
     public async Task UpdateCustomerAsync(
         CustomerModel customer,
         CancellationToken cancellationToken)
     {
-        var entity = await _customersDbContext.Customers.FindAsync(
-            keyValues: new object[] { customer.CustomerId },
+        var entity = await customersDbContext.Customers.FindAsync(
+            keyValues: [customer.CustomerId],
             cancellationToken: cancellationToken);
 
         if (entity != null)
@@ -23,8 +16,8 @@ public class UpdateCustomerRepository : IUpdateCustomerRepository
             entity.FullName = customer.FullName;
             entity.DateOfBirth = customer.DateOfBirth;
 
-            _customersDbContext.Update(entity);
-            await _customersDbContext.SaveChangesAsync(cancellationToken);
+            _ = customersDbContext.Update(entity);
+            _ = await customersDbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

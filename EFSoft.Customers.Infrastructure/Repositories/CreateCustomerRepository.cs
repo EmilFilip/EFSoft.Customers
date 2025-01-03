@@ -1,23 +1,16 @@
 ﻿namespace EFSoft.Customers.Infrastructure.Repositories;
 
-public class CreateCustomerRepository : ICreateCustomerRepository
+public class CreateCustomerRepository(CustomersDbContext customerDbContext) : ICreateCustomerRepository
 {
-    private readonly CustomersDbContext _customersDbContext;
-
-    public CreateCustomerRepository(CustomersDbContext customerDbContext)
-    {
-        _customersDbContext = customerDbContext;
-    }
-
     public async Task CreateCustomerAsync(
         CustomerModel customer,
         CancellationToken cancellationToken)
     {
         var entity = MapToEntity(customer);
 
-        _customersDbContext.Customers.Add(entity);
+        _ = customerDbContext.Customers.Add(entity);
 
-        await _customersDbContext
+        _ = await customerDbContext
             .SaveChangesAsync(cancellationToken);
     }
 

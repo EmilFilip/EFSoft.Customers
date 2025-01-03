@@ -1,6 +1,40 @@
 ﻿@HttpFile_HostAddress = https://localhost:7244
 
-GET {{HttpFile_HostAddress}}/api/customers/"2A8C800A-3226-4CC8-B920-1A42F1E67F7B"
+### Get Customer by ID
+GET {{HttpFile_HostAddress}}/api/customer/2A8C800A-3226-4CC8-B920-1A42F1E67F7B
 Accept: application/json
 
-###
+### Create a New Customer
+POST {{HttpFile_HostAddress}}/api/customer
+Content-Type: application/json
+
+{
+  "fullName": "CreateFrom HttpFile",
+  "dateOfBirth": "1985-05-15"
+}
+
+### Update an Existing Customer
+PUT {{HttpFile_HostAddress}}/api/customer
+Content-Type: application/json
+
+{
+  "customerId": "820B1E23-0119-4553-BF7D-A889593F2D0E",
+  "fullName": "UpdateFrom HttpFile",
+  "dateOfBirth": "1990-08-25"
+}
+
+### Delete a Customer
+DELETE {{HttpFile_HostAddress}}/api/customer/820B1E23-0119-4553-BF7D-A889593F2D0E
+
+### List Customers
+POST {{HttpFile_HostAddress}}/api/customer/{customerIds}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "customerIds": [
+    "59929F83-0CA3-46FD-AF1D-3AF8F7CC1A4C",
+    "D923807B-40CA-439D-E9C5-08DBC3592602",
+    "A3F7F53B-5069-4D03-E9C6-08DBC3592602"
+  ]
+}

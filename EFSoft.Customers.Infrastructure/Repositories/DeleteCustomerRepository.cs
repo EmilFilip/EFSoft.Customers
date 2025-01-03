@@ -1,20 +1,13 @@
 ﻿namespace EFSoft.Customers.Infrastructure.Repositories;
 
-public class DeleteCustomerRepository : IDeleteCustomerRepository
+public class DeleteCustomerRepository(CustomersDbContext customersDbContext) : IDeleteCustomerRepository
 {
-    private readonly CustomersDbContext _customersDbContext;
-
-    public DeleteCustomerRepository(CustomersDbContext customerDbContext)
-    {
-        _customersDbContext = customerDbContext;
-    }
-
     public async Task DeleteCustomerAsync(
         Guid customerId,
         CancellationToken cancellationToken)
     {
-        var entity = await _customersDbContext.Customers.FindAsync(
-            keyValues: new object[] { customerId },
+        var entity = await customersDbContext.Customers.FindAsync(
+            keyValues: [customerId],
             cancellationToken: cancellationToken);
 
         if (entity != null)
@@ -22,8 +15,8 @@ public class DeleteCustomerRepository : IDeleteCustomerRepository
             entity.Deleted = true;
             entity.DeletedAt = DateTime.UtcNow;
 
-            _customersDbContext.Update(entity);
-            await _customersDbContext.SaveChangesAsync(cancellationToken);
+            _ = customersDbContext.Update(entity);
+            _ = await customersDbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

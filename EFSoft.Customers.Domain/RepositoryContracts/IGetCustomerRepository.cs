@@ -2,7 +2,7 @@
 
 public interface IGetCustomerRepository
 {
-    Task<CustomerModel> GetCustomerAsync(
+    Task<CustomerModel?> GetCustomerAsync(
               Guid customerId,
               CancellationToken cancellationToken = default);
 }

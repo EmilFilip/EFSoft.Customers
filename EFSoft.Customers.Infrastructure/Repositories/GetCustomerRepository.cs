@@ -1,19 +1,12 @@
 ﻿namespace EFSoft.Customers.Infrastructure.Repositories;
 
-public class GetCustomerRepository : IGetCustomerRepository
+public class GetCustomerRepository(CustomersDbContext customerDbContext) : IGetCustomerRepository
 {
-    private readonly CustomersDbContext _customersDbContext;
-
-    public GetCustomerRepository(CustomersDbContext customerDbContext)
-    {
-        _customersDbContext = customerDbContext;
-    }
-
     public async Task<CustomerModel?> GetCustomerAsync(
         Guid customerId,
         CancellationToken cancellationToken)
     {
-        var entity = await _customersDbContext.Customers
+        var entity = await customerDbContext.Customers
             .AsQueryable()
             .AsNoTracking()
             .FirstOrDefaultAsync(c => c.CustomerId == customerId && c.Deleted == false,

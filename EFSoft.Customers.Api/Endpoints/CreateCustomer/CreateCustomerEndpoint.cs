@@ -8,7 +8,7 @@ public static class CreateCustomerEndpoint
         CancellationToken cancellationToken)
     {
         var createCustomerCommand = new CreateCustomerCommand(
-            FullName: createCustomerRequest.FullName, 
+            FullName: createCustomerRequest.FullName,
             DateOfBirth: createCustomerRequest.DateOfBirth);
 
         await mediator.Send(
