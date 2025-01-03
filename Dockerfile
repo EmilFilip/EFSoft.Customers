@@ -1,7 +1,10 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS base
+
 WORKDIR /app
+RUN apk add --no-cache icu-libs
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 EXPOSE 80
 EXPOSE 443
 
@@ -13,12 +16,9 @@ COPY ["EFSoft.Customers.Api/EFSoft.Customers.Api.csproj", "EFSoft.Customers.Api/
 COPY ["EFSoft.Customers.Application/EFSoft.Customers.Application.csproj", "EFSoft.Customers.Application/"]
 COPY ["EFSoft.Customers.Domain/EFSoft.Customers.Domain.csproj", "EFSoft.Customers.Domain/"]
 COPY ["EFSoft.Customers.Infrastructure/EFSoft.Customers.Infrastructure.csproj", "EFSoft.Customers.Infrastructure/"]
+COPY ["EFSoft.Shared.Cqrs/EFSoft.Shared.Cqrs.csproj", "EFSoft.Shared.Cqrs/"]
 
-ARG NUGET_PASSWORD
-RUN apk add --update sed 
-RUN sed -i "s|</configuration>|<packageSourceCredentials><emilfilip3><add key=\"Username\" value=\"emilfilip3\" /><add key=\"ClearTextPassword\" value=\"${NUGET_PASSWORD}\" /></emilfilip3></packageSourceCredentials></configuration>|" NuGet.Config
-
-RUN dotnet restore "EFSoft.Customers.Api/EFSoft.Customers.Api.csproj" --configfile NuGet.Config
+RUN dotnet restore "EFSoft.Customers.Api/EFSoft.Customers.Api.csproj"
 
 COPY . .
 WORKDIR "/src/EFSoft.Customers.Api"

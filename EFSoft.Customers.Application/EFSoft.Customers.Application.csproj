@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EFSoft.Shared.Cqrs" Version="1.0.149" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EFSoft.Customers.Domain\EFSoft.Customers.Domain.csproj" />
   </ItemGroup>
 

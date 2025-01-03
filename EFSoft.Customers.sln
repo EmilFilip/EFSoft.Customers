@@ -18,8 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		azure-pipelines.yml = azure-pipelines.yml
 		Dockerfile = Dockerfile
 		k8s-deployment.yaml = k8s-deployment.yaml
+		k8sTest.yaml = k8sTest.yaml
 		NuGet.Config = NuGet.Config
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFSoft.Shared.Cqrs", "EFSoft.Shared.Cqrs\EFSoft.Shared.Cqrs.csproj", "{E3861C50-63A0-4F0D-865D-65C2C9BBF335}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +46,10 @@ Global
 		{D5D0901F-36D1-43B9-99B2-5FE90B3B4334}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5D0901F-36D1-43B9-99B2-5FE90B3B4334}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5D0901F-36D1-43B9-99B2-5FE90B3B4334}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3861C50-63A0-4F0D-865D-65C2C9BBF335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3861C50-63A0-4F0D-865D-65C2C9BBF335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3861C50-63A0-4F0D-865D-65C2C9BBF335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3861C50-63A0-4F0D-865D-65C2C9BBF335}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

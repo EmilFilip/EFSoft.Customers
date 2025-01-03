@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EFSoft.Shared.Cqrs\EFSoft.Shared.Cqrs.csproj" />
+  </ItemGroup>
+
 </Project>
