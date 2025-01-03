@@ -1,4 +1,7 @@
-﻿namespace EFSoft.Customers.Api.Configuration;
+﻿using EFSoft.Customers.Application.GetCustomer;
+using EFSoft.Customers.Infrastructure.Repositories;
+
+namespace EFSoft.Customers.Api.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class Services
@@ -17,6 +20,10 @@ public static class Services
                         sqlServeroptions.EnableRetryOnFailure();
                     });
                 })
-             .AddScoped<ICustomersRepository, CustomersRepository>();
+             .AddScoped<ICreateCustomerRepository, CreateCustomerRepository>()
+             .AddScoped<IDeleteCustomerRepository, DeleteCustomerRepository>()
+             .AddScoped<IGetCustomerRepository, GetCustomerRepository>()
+             .AddScoped<IGetCustomersRepository, GetCustomersRepository>()
+             .AddScoped<IUpdateCustomerRepository, UpdateCustomerRepository>();
     }
 }

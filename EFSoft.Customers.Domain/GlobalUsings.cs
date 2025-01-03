@@ -1,0 +1,1 @@
+﻿global using EFSoft.Customers.Domain.Models;

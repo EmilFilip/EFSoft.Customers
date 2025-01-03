@@ -2,19 +2,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 //if (!builder.Environment.IsDevelopment())
 //{
-    //var appConfigurationConnectionString = builder.Configuration.GetValue<string>("AppConfigurationConnectionString");
+//var appConfigurationConnectionString = builder.Configuration.GetValue<string>("AppConfigurationConnectionString");
 
-    //builder.Configuration.AddAzureAppConfiguration(options =>
-    //{
-    //    options.Connect(appConfigurationConnectionString)
-    //            .ConfigureRefresh(refresh =>
-    //            {
-    //                refresh.Register("Settings:Sentinel", refreshAll: true)
-    //                    .SetCacheExpiration(new TimeSpan(0, 1, 0));
-    //            });
-    //});
+//builder.Configuration.AddAzureAppConfiguration(options =>
+//{
+//    options.Connect(appConfigurationConnectionString)
+//            .ConfigureRefresh(refresh =>
+//            {
+//                refresh.Register("Settings:Sentinel", refreshAll: true)
+//                    .SetCacheExpiration(new TimeSpan(0, 1, 0));
+//            });
+//});
 //}
 
+builder.Services.AddCarter();
 // Add services to the container.
 builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
@@ -29,8 +30,8 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.RegisterLocalServices(builder.Configuration);
 
 var app = builder.Build();
-
-app.MapCustomerEndpoints();
+app.MapCarter();
+//app.MapCustomerEndpoints();
 //app.SeedCustomerDb();
 // Configure the HTTP request pipeline.
 
