@@ -3,6 +3,6 @@
 public interface ICreateCustomerRepository
 {
     Task CreateCustomerAsync(
-        CustomerModel customer,
+        CustomerDomainModel customer,
         CancellationToken cancellationToken = default);
 }

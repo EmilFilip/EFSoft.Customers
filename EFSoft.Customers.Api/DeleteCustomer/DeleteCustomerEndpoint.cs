@@ -1,4 +1,4 @@
-﻿namespace EFSoft.Customers.Api.Endpoints.DeleteCustomer;
+﻿namespace EFSoft.Customers.Api.DeleteCustomer;
 
 public static class DeleteCustomerEndpoint
 {

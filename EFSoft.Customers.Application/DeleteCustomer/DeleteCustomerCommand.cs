@@ -1,5 +1,3 @@
-﻿namespace EFSoft.Customers.Application.Commands.DeleteCustomer;
+﻿namespace EFSoft.Customers.Application.DeleteCustomer;
 
-public sealed record DeleteCustomerCommand(Guid CustomerId) : ICommand
-{
-}
+public sealed record DeleteCustomerCommand(Guid CustomerId) : ICommand;

@@ -1,7 +1,4 @@
-﻿using EFSoft.Customers.Application.GetCustomer;
-using EFSoft.Customers.Infrastructure.Repositories;
-
-namespace EFSoft.Customers.Api.Configuration;
+﻿namespace EFSoft.Customers.Api.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class Services
@@ -15,9 +12,9 @@ public static class Services
              .AddDbContext<CustomersDbContext>(
                 options =>
                 {
-                    options.UseSqlServer(configuration.GetConnectionString("CustomersConnectionString"), sqlServeroptions =>
+                    _ = options.UseSqlServer(configuration.GetConnectionString("CustomersConnectionString"), sqlServeroptions =>
                     {
-                        sqlServeroptions.EnableRetryOnFailure();
+                        _ = sqlServeroptions.EnableRetryOnFailure();
                     });
                 })
              .AddScoped<ICreateCustomerRepository, CreateCustomerRepository>()

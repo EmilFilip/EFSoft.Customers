@@ -2,7 +2,7 @@
 
 public class GetCustomersRepository(CustomersDbContext customerDbContext) : IGetCustomersRepository
 {
-    public async Task<IEnumerable<CustomerModel>> GetCustomersAsync(
+    public async Task<IEnumerable<CustomerDomainModel>> GetCustomersAsync(
         IEnumerable<Guid> customerIds,
         CancellationToken cancellationToken = default)
     {
@@ -16,10 +16,10 @@ public class GetCustomersRepository(CustomersDbContext customerDbContext) : IGet
         return entities.Select(x => MapToDomain(x));
     }
 
-    private static CustomerModel MapToDomain(
+    private static CustomerDomainModel MapToDomain(
         Customer entityCustomer)
     {
-        return new CustomerModel(
+        return new CustomerDomainModel(
             customerId: entityCustomer.CustomerId,
             fullName: entityCustomer.FullName,
             dateOfBirth: entityCustomer.DateOfBirth,

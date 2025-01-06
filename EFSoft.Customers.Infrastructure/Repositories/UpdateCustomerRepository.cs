@@ -3,7 +3,7 @@
 public class UpdateCustomerRepository(CustomersDbContext customersDbContext) : IUpdateCustomerRepository
 {
     public async Task UpdateCustomerAsync(
-        CustomerModel customer,
+        CustomerDomainModel customer,
         CancellationToken cancellationToken)
     {
         var entity = await customersDbContext.Customers.FindAsync(

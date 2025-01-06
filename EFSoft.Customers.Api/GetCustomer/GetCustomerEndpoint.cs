@@ -1,4 +1,4 @@
-﻿namespace EFSoft.Customers.Api.Endpoints.GetCustomer;
+﻿namespace EFSoft.Customers.Api.GetCustomer;
 
 public static class GetCustomerEndpoint
 {

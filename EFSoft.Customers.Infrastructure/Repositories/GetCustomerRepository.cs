@@ -2,7 +2,7 @@
 
 public class GetCustomerRepository(CustomersDbContext customerDbContext) : IGetCustomerRepository
 {
-    public async Task<CustomerModel?> GetCustomerAsync(
+    public async Task<CustomerDomainModel?> GetCustomerAsync(
         Guid customerId,
         CancellationToken cancellationToken)
     {
@@ -20,10 +20,10 @@ public class GetCustomerRepository(CustomersDbContext customerDbContext) : IGetC
         return MapToDomain(entity);
     }
 
-    private static CustomerModel MapToDomain(
+    private static CustomerDomainModel MapToDomain(
         Customer entityCustomer)
     {
-        return new CustomerModel(
+        return new CustomerDomainModel(
             customerId: entityCustomer.CustomerId,
             fullName: entityCustomer.FullName,
             dateOfBirth: entityCustomer.DateOfBirth,

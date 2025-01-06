@@ -1,23 +1,17 @@
 ﻿namespace EFSoft.Customers.Application.UpdateCustomer;
 
-public class UpdateCustomerCommandHandler : ICommandHandler<UpdateCustomerCommand>
+public class UpdateCustomerCommandHandler(IUpdateCustomerRepository updateCustomerRepository)
+    : ICommandHandler<UpdateCustomerCommand>
 {
-    private readonly IUpdateCustomerRepository _updateCustomerRepository;
-
-    public UpdateCustomerCommandHandler(IUpdateCustomerRepository updateCustomerRepository)
-    {
-        _updateCustomerRepository = updateCustomerRepository;
-    }
-
     public async Task Handle(
         UpdateCustomerCommand command,
         CancellationToken cancellationToken)
     {
-        var customerModel = new CustomerModel(
+        var customerModel = new CustomerDomainModel(
             customerId: command.CustomerId,
             fullName: command.FullName,
             dateOfBirth: command.DateOfBirth);
 
-        await _updateCustomerRepository.UpdateCustomerAsync(customerModel, cancellationToken);
+        await updateCustomerRepository.UpdateCustomerAsync(customerModel, cancellationToken);
     }
 }

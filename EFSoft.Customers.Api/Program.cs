@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 
 //if (!builder.Environment.IsDevelopment())
@@ -20,7 +22,7 @@ builder.Services.AddCarter();
 builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 builder.Configuration.AddEnvironmentVariables();
-
+builder.Services.AddValidatorsFromAssemblyContaining<CreateCustomerRequestValidator>();
 builder.Services.AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "Customers Microservice", Version = "v1" });

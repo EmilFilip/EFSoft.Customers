@@ -1,4 +1,4 @@
-﻿namespace EFSoft.Customers.Api.Endpoints.CreateCustomer;
+﻿namespace EFSoft.Customers.Api.CreateCustomer;
 
 public static class CreateCustomerEndpoint
 {

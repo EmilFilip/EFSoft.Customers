@@ -3,7 +3,7 @@
 public class CreateCustomerRepository(CustomersDbContext customerDbContext) : ICreateCustomerRepository
 {
     public async Task CreateCustomerAsync(
-        CustomerModel customer,
+        CustomerDomainModel customer,
         CancellationToken cancellationToken)
     {
         var entity = MapToEntity(customer);
@@ -15,7 +15,7 @@ public class CreateCustomerRepository(CustomersDbContext customerDbContext) : IC
     }
 
     private static Customer MapToEntity(
-        CustomerModel domainCustomer)
+        CustomerDomainModel domainCustomer)
     {
         return new Customer
         {

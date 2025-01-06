@@ -1,8 +1,8 @@
 ﻿namespace EFSoft.Customers.Domain.Models;
 
-public class CustomerModel
+public class CustomerDomainModel
 {
-    public CustomerModel(
+    public CustomerDomainModel(
         Guid customerId,
         string fullName,
         DateTimeOffset dateOfBirth,
@@ -13,7 +13,7 @@ public class CustomerModel
         DateOfBirth = dateOfBirth;
         HasOpenOrder = hasOpenOrder;
     }
-    public CustomerModel(
+    public CustomerDomainModel(
         Guid customerId,
         string fullName,
         DateTimeOffset dateOfBirth)
@@ -23,11 +23,11 @@ public class CustomerModel
         DateOfBirth = dateOfBirth;
     }
 
-    public static CustomerModel CreateNew(
+    public static CustomerDomainModel CreateNew(
         string fullName,
         DateTimeOffset dateOfBirth)
     {
-        return new CustomerModel(
+        return new CustomerDomainModel(
             customerId: Guid.NewGuid(),
             fullName: fullName,
             dateOfBirth: dateOfBirth,

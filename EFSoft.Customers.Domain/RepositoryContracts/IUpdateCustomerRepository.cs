@@ -2,6 +2,6 @@
 public interface IUpdateCustomerRepository
 {
     Task UpdateCustomerAsync(
-        CustomerModel customer,
+        CustomerDomainModel customer,
         CancellationToken cancellationToken = default);
 }

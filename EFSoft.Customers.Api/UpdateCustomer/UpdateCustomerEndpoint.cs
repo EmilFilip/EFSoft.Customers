@@ -1,4 +1,4 @@
-﻿namespace EFSoft.Customers.Api.Endpoints.UpdateCustomer;
+﻿namespace EFSoft.Customers.Api.UpdateCustomer;
 
 public static class UpdateCustomerEndpoint
 {

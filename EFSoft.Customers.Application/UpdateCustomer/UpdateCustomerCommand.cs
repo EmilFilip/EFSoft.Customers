@@ -3,6 +3,4 @@
 public sealed record UpdateCustomerCommand(
          Guid CustomerId,
          string FullName,
-         DateTimeOffset DateOfBirth) : ICommand
-{
-}
+         DateTimeOffset DateOfBirth) : ICommand;
