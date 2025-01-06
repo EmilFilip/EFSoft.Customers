@@ -1,17 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="EFSoft.Shared.Cqrs" Version="1.0.347" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="EFSoft.Shared.Cqrs" Version="1.0.347" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\EFSoft.Customers.Domain\EFSoft.Customers.Domain.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\EFSoft.Customers.Domain\EFSoft.Customers.Domain.csproj" />
+    </ItemGroup>
 
 </Project>
