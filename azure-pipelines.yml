@@ -36,25 +36,13 @@ steps:
     versionSpec: '6.x.x'
     checkLatest: true
 
-#- task: DotNetCoreCLI@2
-#  displayName: Install EF Tool
-#  inputs:
-#    command: custom
-#    custom: 'tool '
-#    arguments: install dotnet-ef
 - task: NuGetCommand@2
+  displayName: 'Restore NuGet Packages'
   inputs:
     command: 'restore'
     restoreSolution: '**/*.sln'
     feedsToUse: 'select'
     vstsFeed: 'b461ee19-0e11-4e29-a84b-881602ea8e3e'
-#- task: NuGetCommand@2
-#  displayName: 'Restore NuGet Packages'
-#  inputs:
-#    command: 'restore'
-#    restoreSolution: '**/*.sln'
-#    feedsToUse: 'select'
-#    vstsFeed: 'b461ee19-0e11-4e29-a84b-881602ea8e3e'
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'Build $(buildConfiguration)'
@@ -67,6 +55,13 @@ steps:
     publishTestResults: false
     projects: '**/*.UnitTests.csproj'
     testRunTitle: 'Unit-Test-Run-$(Build.BuildId)'
+
+#- task: DotNetCoreCLI@2
+#  displayName: Install EF Tool
+#  inputs:
+#    command: custom
+#    custom: 'tool '
+#    arguments: install dotnet-ef
 
 #- task: DotNetCoreCLI@2
 #  displayName: Create SQL Scripts
