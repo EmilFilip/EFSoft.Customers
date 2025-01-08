@@ -31,7 +31,7 @@ public class GetAllCustomersRepository(CustomersDbContext customerDbContext) : I
             c.HasOpenOrder));
 
         return new PagedList<CustomerDomainModel>(
-            await customerResponseQuery.ToListAsync(cancellationToken),
+            await customerResponseQuery.Skip((pagedListParams.Page - 1) * pagedListParams.PageSize).Take(pagedListParams.PageSize).ToListAsync(cancellationToken),
             await customerResponseQuery.CountAsync(cancellationToken),
             pagedListParams.Page,
             pagedListParams.PageSize);

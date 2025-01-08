@@ -8,5 +8,5 @@ public sealed record PagedList<T>(
 {
     public bool HasNextPage => Page * PageSize < TotalCount;
 
-    public bool HasPreviousPage => PageSize > 1;
+    public bool HasPreviousPage => Page > 1;
 }
