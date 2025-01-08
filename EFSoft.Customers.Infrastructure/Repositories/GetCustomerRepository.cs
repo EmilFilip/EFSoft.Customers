@@ -9,8 +9,10 @@ public class GetCustomerRepository(CustomersDbContext customerDbContext) : IGetC
         var entity = await customerDbContext.Customers
             .AsQueryable()
             .AsNoTracking()
-            .FirstOrDefaultAsync(c => c.CustomerId == customerId && c.Deleted == false,
-                                cancellationToken: cancellationToken);
+            .FirstOrDefaultAsync(c =>
+                    c.CustomerId == customerId &&
+                    c.Deleted == false,
+                cancellationToken: cancellationToken);
 
         if (entity == null)
         {

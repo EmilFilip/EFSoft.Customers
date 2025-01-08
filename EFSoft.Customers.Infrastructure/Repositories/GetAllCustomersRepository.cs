@@ -24,6 +24,7 @@ public class GetAllCustomersRepository(CustomersDbContext customerDbContext) : I
         }
 
         var customerResponseQuery = customerQuery
+            .Where(c => c.Deleted == false)
             .Select(c => new CustomerDomainModel(
             c.CustomerId,
             c.FullName,
