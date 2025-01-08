@@ -3,11 +3,13 @@ global using Carter;
 global using EFSoft.Customers.Api.Configuration;
 global using EFSoft.Customers.Api.CreateCustomer;
 global using EFSoft.Customers.Api.DeleteCustomer;
+global using EFSoft.Customers.Api.GetAllCustomers;
 global using EFSoft.Customers.Api.GetCustomer;
 global using EFSoft.Customers.Api.GetCustomers;
 global using EFSoft.Customers.Api.UpdateCustomer;
 global using EFSoft.Customers.Application.CreateCustomer;
 global using EFSoft.Customers.Application.DeleteCustomer;
+global using EFSoft.Customers.Application.GetAllCustomers;
 global using EFSoft.Customers.Application.GetCustomer;
 global using EFSoft.Customers.Application.GetCustomers;
 global using EFSoft.Customers.Application.UpdateCustomer;
@@ -23,4 +25,3 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.OpenApi.Models;
-

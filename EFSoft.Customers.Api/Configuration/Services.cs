@@ -21,6 +21,7 @@ public static class Services
              .AddScoped<IDeleteCustomerRepository, DeleteCustomerRepository>()
              .AddScoped<IGetCustomerRepository, GetCustomerRepository>()
              .AddScoped<IGetCustomersRepository, GetCustomersRepository>()
+             .AddScoped<IGetAllCustomersRepository, GetAllCustomersRepository>()
              .AddScoped<IUpdateCustomerRepository, UpdateCustomerRepository>();
     }
 }
