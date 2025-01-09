@@ -42,7 +42,7 @@ stages:
     - task: CopyFiles@2
       inputs:
         SourceFolder: '$(agent.builddirectory)'
-        Contents: $(agent.builddirectory)/**/k8s-deployment.yaml
+        Contents: $(agent.builddirectory)/**/azure-pipelines-k8.yaml
         TargetFolder: '$(build.artifactstagingdirectory)'
     - task: PublishBuildArtifacts@1
       inputs:

@@ -1,5 +1,5 @@
 ﻿namespace EFSoft.Customers.Application.CreateCustomer;
 
-public sealed record class CreateCustomerCommand(
+public sealed record CreateCustomerCommand(
     string FullName,
     DateTimeOffset DateOfBirth) : ICommand;

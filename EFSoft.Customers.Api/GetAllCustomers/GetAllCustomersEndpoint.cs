@@ -1,6 +1,4 @@
-﻿using Microsoft.IdentityModel.Tokens;
-
-namespace EFSoft.Customers.Api.GetAllCustomers;
+﻿namespace EFSoft.Customers.Api.GetAllCustomers;
 
 public static class GetAllCustomersEndpoint
 {

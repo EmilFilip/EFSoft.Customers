@@ -5,7 +5,6 @@ public class EndpointsMapping : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("api/customer").WithTags("Customers");
-        //.RequireAuthorization();
 
         _ = group.MapGet("/{customerId:guid}", GetCustomerEndpoint.GetCustomer);
 

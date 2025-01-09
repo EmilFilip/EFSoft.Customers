@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Identity;
-
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 //if (!builder.Environment.IsDevelopment())
 //{
@@ -19,7 +17,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCarter();
 // Add services to the container.
-builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 builder.Configuration.AddEnvironmentVariables();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateCustomerRequestValidator>();
@@ -42,7 +39,6 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Customers Microservice V1");
 });
 
-app.UseAuthorization();
 app.UseHttpsRedirection();
 
 app.Run();
