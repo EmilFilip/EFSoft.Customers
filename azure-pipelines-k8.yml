@@ -1,51 +1,51 @@
-# Docker
-# Build a Docker image
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
-trigger:
-- master
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-resources:
-- repo: self
-
-variables:
-  tag: '$(Build.BuildId)'
-
-stages:
-- stage: Build
-  displayName: Build and Push image
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      displayName: 'Build Docker image'
-      inputs:
-        containerRegistry: 'efsoft'
-        command: 'build'
-        repository: 'efsoft-customers'
-        dockerfile: '**/Dockerfile'
-        arguments: '--build-arg NUGET_PASSWORD=$(PAT)'
-        tags: latest
-    - task: Docker@2
-      displayName: 'Push Docker image'
-      inputs:
-        containerRegistry: 'efsoft'
-        repository: 'efsoft-customers'
-        command: 'push'
-        tags: latest
-    - task: CopyFiles@2
-      inputs:
-        SourceFolder: '$(agent.builddirectory)'
-        Contents: $(agent.builddirectory)/**/azure-pipelines-k8.yaml
-        TargetFolder: '$(build.artifactstagingdirectory)'
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  customers-deploy
+  namespace: efsoft
+  labels:
+    app:  efsoft-customers
+spec:
+  selector:
+    matchLabels:
+      app: efsoft-customers
+  #replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  efsoft-customers
+    spec:
+      containers:
+      - name:  efsoft-customers
+        image:  emilfilip/efsoft_customers:9
+        env:
+        - name: ConnectionStrings__CustomersConnectionString
+          value: "Server=192.168.132.162,1433;Database=Customers;User Id=sa;Password=Cacaoculapte12!;MultipleActiveResultSets=true;TrustServerCertificate=True;"
+        - name: DB_PORT
+          value: "5432"
+        ports:
+        - containerPort:  8080
+          name:  customers-port
+---
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: customers-svc
+        namespace: efsoft
+      spec:
+        selector:
+          app: efsoft-customers
+        type: ClusterIP
+        ports:
+        - name: customers-port
+          port: 8094
+          targetPort: 8080
+# ---
+#         apiVersion: v1
+#         kind: Secret
+#         metadata:
+#           name: mssql-db-secret
+#         type: Opaque
+#         data:
+#           username: c2E=    # base64 encoded "admin"
+#           password: Q2FjYW9jdWxhcHRlMTIh # base64 encoded "password"

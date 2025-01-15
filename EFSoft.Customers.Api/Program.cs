@@ -15,10 +15,10 @@ if (!builder.Environment.IsDevelopment())
 }
 
 builder.Services.AddCarter();
-// Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
 builder.Configuration.AddEnvironmentVariables();
-builder.Services.AddValidatorsFromAssemblyContaining<CreateCustomerRequestValidator>();
+builder.Services.AddHealthChecks();
+
 builder.Services.AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "Customers Microservice", Version = "v1" });
@@ -31,12 +31,16 @@ app.MapCarter();
 
 //app.SeedCustomerDb();
 
+app.MapHealthChecks("/health");
 
-app.UseSwagger();
-app.UseSwaggerUI(c =>
+if (app.Environment.IsDevelopment())
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Customers Microservice V1");
-});
+    _ = app.UseSwagger();
+    _ = app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Customers Microservice V1");
+    });
+}
 
 app.UseHttpsRedirection();
 
