@@ -17,7 +17,9 @@ public class GetCustomerQueryHandler(IGetCustomerRepository getCustomerRepositor
         }
 
         return new GetCustomerQueryResult(
+            CustomerId: customer.CustomerId,
             FullName: customer.FullName,
-            DateOfBirth: customer.DateOfBirth);
+            DateOfBirth: customer.DateOfBirth,
+            HasOpenedOrder: customer.HasOpenOrder);
     }
 }
