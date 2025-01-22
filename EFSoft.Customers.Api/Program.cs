@@ -18,6 +18,20 @@ builder.Services.AddCarter();
 builder.Services.AddEndpointsApiExplorer();
 builder.Configuration.AddEnvironmentVariables();
 builder.Services.AddHealthChecks();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails(options =>
+{
+    options.CustomizeProblemDetails = context =>
+    {
+        context.ProblemDetails.Instance =
+        $"{context.HttpContext.Request.Method} {context.HttpContext.Request.Path}";
+
+        _ = context.ProblemDetails.Extensions.TryAdd("requestId", context.HttpContext.TraceIdentifier);
+
+        var activity = context.HttpContext.Features.Get<IHttpActivityFeature>()?.Activity;
+        _ = context.ProblemDetails.Extensions.TryAdd("traceId", activity?.Id);
+    };
+});
 
 builder.Services.AddSwaggerGen(c =>
     {
@@ -29,12 +43,12 @@ builder.Services.RegisterLocalServices(builder.Configuration);
 var app = builder.Build();
 app.MapCarter();
 
-//app.SeedCustomerDb();
 
 app.MapHealthChecks("/health");
 
 if (app.Environment.IsDevelopment())
 {
+    app.SeedCustomerDb();
     _ = app.UseSwagger();
     _ = app.UseSwaggerUI(c =>
     {
@@ -42,6 +56,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseExceptionHandler();
 app.UseHttpsRedirection();
 
 app.Run();

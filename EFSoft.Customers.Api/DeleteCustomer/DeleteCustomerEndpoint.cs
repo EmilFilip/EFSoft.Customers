@@ -8,7 +8,6 @@ public static class DeleteCustomerEndpoint
         CancellationToken cancellationToken)
     {
         var deleteCustomerCommand = new DeleteCustomerCommand(customerId);
-
         await mediator.Send(
             deleteCustomerCommand,
             cancellationToken);
