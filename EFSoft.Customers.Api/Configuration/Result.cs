@@ -20,5 +20,5 @@ public sealed class Result<T>
 
     public static Result<T> Success(T value) => new Result<T>(value);
     public static Result<T> Failure(Error error) => new Result<T>(error);
-    public TResult Map<TResult>(Func<T, TResult> onSuccess, Func<Error, TResult> onFailure) => IsSuccess ? onSuccess(Value!) : onSuccess(Value!);
+    public TResult Map<TResult>(Func<T, TResult> onSuccess, Func<Error, TResult> onFailure) => IsSuccess ? onSuccess(Value!) : onFailure(Error!);
 }
