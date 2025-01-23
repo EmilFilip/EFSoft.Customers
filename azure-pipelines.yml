@@ -52,9 +52,9 @@ steps:
   inputs:
     command: 'test'
     arguments: --no-restore --configuration $(buildConfiguration) 
-    publishTestResults: false
-    projects: '**/*.UnitTests.csproj'
-    testRunTitle: 'Unit-Test-Run-$(Build.BuildId)'
+    publishTestResults: true
+    projects: '**/*.Tests.csproj'
+    testRunTitle: 'Test-Run-$(Build.BuildId)'
 
 #- task: DotNetCoreCLI@2
 #  displayName: Install EF Tool
