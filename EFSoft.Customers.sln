@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSoft.Customers.Application.UnitTests", "EFSoft.Customers.Application.UnitTests\EFSoft.Customers.Application.UnitTests.csproj", "{14C34793-F442-4251-8289-042A3023B8E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchitectureTests", "ArchitectureTests\ArchitectureTests.csproj", "{6DD88196-8309-4C4B-9468-5BAA50F7D6CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{14C34793-F442-4251-8289-042A3023B8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14C34793-F442-4251-8289-042A3023B8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14C34793-F442-4251-8289-042A3023B8E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD88196-8309-4C4B-9468-5BAA50F7D6CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD88196-8309-4C4B-9468-5BAA50F7D6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD88196-8309-4C4B-9468-5BAA50F7D6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD88196-8309-4C4B-9468-5BAA50F7D6CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{EAA83EFD-037F-49FF-82A8-916A4EB1B0B4} = {3701537A-2935-46E7-A6DE-8A60B7FE37AA}
 		{14C34793-F442-4251-8289-042A3023B8E7} = {EAA83EFD-037F-49FF-82A8-916A4EB1B0B4}
+		{6DD88196-8309-4C4B-9468-5BAA50F7D6CF} = {3701537A-2935-46E7-A6DE-8A60B7FE37AA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {691D70C0-553E-45A8-9DEB-89975669F91F}
