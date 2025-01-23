@@ -19,18 +19,18 @@ public static class SeedDB
                     }
 
                     await context.Customers.AddRangeAsync(
-                                new Customer
-                                {
-                                    CustomerId = new Guid(),
-                                    FullName = "Loredana Simerea",
-                                    DateOfBirth = new DateTime(1980, 11, 05)
-                                },
-                                new Customer
-                                {
-                                    CustomerId = new Guid(),
-                                    FullName = "Emil Filip",
-                                    DateOfBirth = new DateTime(1979, 03, 07)
-                                });
+                            new Customer
+                            {
+                                CustomerId = new Guid(),
+                                FullName = "Loredana Simerea",
+                                DateOfBirth = new DateTime(1980, 11, 05)
+                            },
+                            new Customer
+                            {
+                                CustomerId = new Guid(),
+                                FullName = "Emil Filip",
+                                DateOfBirth = new DateTime(1979, 03, 07)
+                            });
 
                     var saved = await context.SaveChangesAsync();
 

@@ -52,7 +52,7 @@ steps:
   inputs:
     command: 'test'
     arguments: --no-restore --configuration $(buildConfiguration) 
-    publishTestResults: false
+    publishTestResults: true
     projects: '**/*.*Tests.csproj'
     testRunTitle: 'Test-Run-$(Build.BuildId)'
 

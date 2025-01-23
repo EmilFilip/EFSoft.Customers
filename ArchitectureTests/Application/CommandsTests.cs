@@ -1,4 +1,4 @@
-﻿namespace EFSoft.ArchitectureTests.Application;
+﻿namespace EFSoft.Customers.ArchitectureTests.Application;
 
 public class CommandsTests : ArchitectureBaseTest
 {

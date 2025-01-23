@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSoft.Customers.Application.UnitTests", "EFSoft.Customers.Application.UnitTests\EFSoft.Customers.Application.UnitTests.csproj", "{14C34793-F442-4251-8289-042A3023B8E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSoft.ArchitectureTests", "ArchitectureTests\EFSoft.ArchitectureTests.csproj", "{6DD88196-8309-4C4B-9468-5BAA50F7D6CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSoft.Customers.ArchitectureTests", "ArchitectureTests\EFSoft.Customers.ArchitectureTests.csproj", "{6DD88196-8309-4C4B-9468-5BAA50F7D6CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
