@@ -1,4 +1,4 @@
-﻿namespace ArchitectureTests.Application;
+﻿namespace EFSoft.ArchitectureTests.Application;
 
 public class QueriesTests : ArchitectureBaseTest
 {

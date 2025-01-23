@@ -48,12 +48,12 @@ steps:
   displayName: 'Build $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Run unit tests'
+  displayName: 'Run tests'
   inputs:
     command: 'test'
     arguments: --no-restore --configuration $(buildConfiguration) 
-    publishTestResults: true
-    projects: '**/*.Tests.csproj'
+    publishTestResults: false
+    projects: '**/*.*Tests.csproj'
     testRunTitle: 'Test-Run-$(Build.BuildId)'
 
 #- task: DotNetCoreCLI@2
