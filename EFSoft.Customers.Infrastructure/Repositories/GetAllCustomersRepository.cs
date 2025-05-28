@@ -42,8 +42,8 @@ public class GetAllCustomersRepository(CustomersDbContext customerDbContext) : I
     {
         return sortColumn?.ToLower() switch
         {
-            "FullName" => customer => customer.FullName,
-            "DateOfBirth" => customer => customer.DateOfBirth,
+            "fullname" => customer => customer.FullName,
+            "dateofbirth" => customer => customer.DateOfBirth,
             _ => customer => customer.UpdatedAt!
         };
     }
